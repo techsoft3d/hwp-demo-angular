@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { Communicator } from '../../hoops-communicator-2020/hoops_web_viewer';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-hwp-viewer',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hwp-viewer.component.scss']
 })
 export class HwpViewerComponent implements OnInit {
+  public viewerId = uuidv4();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    console.log(this.viewerId);
     let hwv = new Communicator.WebViewer({
-      containerId: "hwp-canvas",
+      containerId: this.viewerId,
       endpointUri: "/assets/microengine.scs",
     });
 
