@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ViewerStatus } from 'src/data/viewerStatus';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-hwp-demo';
+  public viewerStatus: ViewerStatus = {
+    modelStructureIsReady: false,
+    cameraStatus: "unavailable"
+  };
+
+  newViewerStatus(newStatus: ViewerStatus) {
+    this.viewerStatus = newStatus;
+  }
+
 }

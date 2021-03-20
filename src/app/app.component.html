@@ -1,12 +1,20 @@
-<div class="container-fluid p-0">
- <div class="row" style="height: 100vh;">
-   <div class="col-6 p-0">
-    <app-hwp-viewer></app-hwp-viewer>
-   </div>
-   <div class="col p-3">
-    <span class="navbar-brand">
-      <h1>Welcome to Hoops Web Platform</h1>
-    </span>
-   </div>
- </div>
+<div class="container-fluid p-0 m-0">
+  <div class="row p-0 m-0" style="height: 100vh;">
+    <div class="col-6 p-0 m-0">
+      <app-hwp-viewer modelPath="/assets/microengine.scs" (viewerStatusEvent)="newViewerStatus($event)"></app-hwp-viewer>
+    </div>
+    <div class="col-6 p-0 m-0">
+      <nav class="navbar navbar-light bg-light m-0 p-3">
+        <span class="navbar-brand m-0 p-0">
+          <h1 class="m-0 p-0">Welcome to Hoops Web Platform</h1>
+        </span>
+      </nav>
+      <div class="p-3">
+        <h5>Model Structure</h5>
+        <p>{{ viewerStatus.modelStructureIsReady ? "Model structure is ready" : "Model structure is not ready" }}</p>
+        <h5>Camera Status</h5>
+        <p>{{ viewerStatus.cameraStatus }}</p>
+      </div>
+    </div>
+  </div>
 </div>
