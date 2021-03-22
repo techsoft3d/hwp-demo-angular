@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewerStatus } from 'src/data/viewerStatus';
+// import { SelectOperator } from 'src/operators/SelectOperator';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,27 @@ import { ViewerStatus } from 'src/data/viewerStatus';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public viewerStatus: ViewerStatus = {
-    modelStructureIsReady: false,
-    cameraStatus: "unavailable"
-  };
+  public hwv: Communicator.WebViewer | null = null;
+  public modelStructureIsReady = false;
+  public cameraStatus = "unavailable";
+  // public selectOperator: Communicator.Operator.Operator;
 
-  newViewerStatus(newStatus: ViewerStatus) {
-    this.viewerStatus = newStatus;
+  constructor() {
+  }
+
+  newWebViewer(newHwv: Communicator.WebViewer) {
+    this.hwv = newHwv;
+    this.hwv.setCallbacks({
+      sceneReady: () => {
+        this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
+      },
+      modelStructureReady: () => {
+        this.modelStructureIsReady = true;
+      },
+      camera: () => {
+        this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
+      }
+    });
   }
 
 }

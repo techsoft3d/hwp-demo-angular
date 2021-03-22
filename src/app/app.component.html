@@ -1,9 +1,12 @@
 <div class="container-fluid p-0 m-0">
   <div class="row p-0 m-0" style="height: 100vh;">
+    <!-- HWP WebViewer with Custom Component -->
     <div class="col-6 p-0 m-0">
-      <app-hwp-viewer modelPath="/assets/microengine.scs" (viewerStatusEvent)="newViewerStatus($event)"></app-hwp-viewer>
+      <app-hwp-viewer modelPath="/assets/microengine.scs" (webViewerEvent)="newWebViewer($event)">
+      </app-hwp-viewer>
     </div>
-    <div class="col-6 p-0 m-0">
+    <!-- Controlls -->
+    <div class="col-6 p-0 m-0 overflow-scroll">
       <nav class="navbar navbar-light bg-light m-0 p-3">
         <span class="navbar-brand m-0 p-0">
           <h1 class="m-0 p-0">Welcome to Hoops Web Platform</h1>
@@ -11,9 +14,17 @@
       </nav>
       <div class="p-3">
         <h5>Model Structure</h5>
-        <p>{{ viewerStatus.modelStructureIsReady ? "Model structure is ready" : "Model structure is not ready" }}</p>
+        <p>{{ modelStructureIsReady ? "Model structure is ready" : "Model structure is not ready" }}</p>
+        <!-- Operator Selection -->
+        <h5>Operator</h5>
+        <select class="form-select mb-3">
+          <option value="Orbit">Orbit</option>
+          <option value="Area Select">Area Select</option>
+          <option value="Select">Select</option>
+        </select>
+        <!-- Camera Status -->
         <h5>Camera Status</h5>
-        <p>{{ viewerStatus.cameraStatus }}</p>
+        <p>{{ cameraStatus }}</p>
       </div>
     </div>
   </div>

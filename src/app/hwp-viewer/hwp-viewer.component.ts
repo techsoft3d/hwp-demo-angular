@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { ViewerStatus } from 'src/data/viewerStatus';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -10,17 +9,14 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class HwpViewerComponent implements OnInit {
   @Input() modelPath: string;
-  @Output() viewerStatusEvent = new EventEmitter<ViewerStatus>();
-
-  private viewerStatus: ViewerStatus = {
-    modelStructureIsReady: false,
-    cameraStatus: "unavailable"
-  };
+  @Input() operator: Communicator.OperatorId;
+  @Output() webViewerEvent = new EventEmitter<Communicator.WebViewer>();
 
   public viewerId = uuidv4();
 
   constructor() {
     this.modelPath = "";
+    this.operator = Communicator.OperatorId.Orbit;
   }
 
   ngOnInit(): void {}
@@ -28,8 +24,6 @@ export class HwpViewerComponent implements OnInit {
   ngAfterViewInit(): void {
     console.log(this.viewerId);
     console.log(this.modelPath);
-
-    this.viewerStatusEvent.emit(this.viewerStatus);
 
     let hwv = new Communicator.WebViewer({
       containerId: this.viewerId,
@@ -39,24 +33,11 @@ export class HwpViewerComponent implements OnInit {
     hwv.setCallbacks({
       sceneReady: () => {
         hwv.view.setBackgroundColor(Communicator.Color.blue(), Communicator.Color.white());
-        this.viewerStatus.cameraStatus = JSON.stringify(hwv.view.getCamera().toJson(), null, 4);
-        this.viewerStatusEvent.emit(this.viewerStatus);
-      },
-      modelStructureReady: () => {
-        this.viewerStatus.modelStructureIsReady = true;
-        this.viewerStatusEvent.emit(this.viewerStatus);
-        // document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
-      },
-      camera: () => {
-        this.viewerStatus.cameraStatus = JSON.stringify(hwv.view.getCamera().toJson(), null, 4);
-        this.viewerStatusEvent.emit(this.viewerStatus);
-        // document.getElementById('CameraData').innerHTML = JSON.stringify(hwv.view.getCamera().toJson(), null, 4);
       },
     });
 
+    this.webViewerEvent.emit(hwv);
     hwv.start();
+
   }
-
-  // ngOnInit(): void {}
-
 }

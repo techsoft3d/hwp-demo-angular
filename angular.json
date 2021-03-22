@@ -33,7 +33,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "https://cdn.jsdelivr.net/gh/techsoft3d/hoops-web-viewer@2021.0.0/hoops_web_viewer.js?v=2021.0.0"
+            ]
           },
           "configurations": {
             "production": {
