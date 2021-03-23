@@ -6,7 +6,7 @@
       </app-hwp-viewer>
     </div>
     <!-- Controlls -->
-    <div class="col-6 p-0 m-0 overflow-scroll">
+    <div class="col-6 p-0 m-0 overflow-scroll" style="height: 100vh">
       <nav class="navbar navbar-light bg-light m-0 p-3">
         <span class="navbar-brand m-0 p-0">
           <h1 class="m-0 p-0">Welcome to Hoops Web Platform</h1>
@@ -17,10 +17,11 @@
         <p>{{ modelStructureIsReady ? "Model structure is ready" : "Model structure is not ready" }}</p>
         <!-- Operator Selection -->
         <h5>Operator</h5>
-        <select class="form-select mb-3">
+        <select class="form-select mb-3" id="operatorType">
           <option value="Orbit">Orbit</option>
           <option value="Area Select">Area Select</option>
           <option value="Select">Select</option>
+          <option value="Measure">Measure</option>
         </select>
         <!-- Camera Status -->
         <h5>Camera Status</h5>

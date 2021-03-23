@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-// import { SelectOperator } from 'src/operators/SelectOperator';
+import { SelectOperator } from 'src/typescript/select_operator';
+import { MeasureBetweenPointsOperator } from 'src/typescript/measure_operator';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public hwv: Communicator.WebViewer | null = null;
   public modelStructureIsReady = false;
   public cameraStatus = "unavailable";
-  // public selectOperator: Communicator.Operator.Operator;
 
   constructor() {
   }
 
+  // When the WebViewer is ready
   newWebViewer(newHwv: Communicator.WebViewer) {
-    this.hwv = newHwv;
-    this.hwv.setCallbacks({
+    newHwv.setCallbacks({
       sceneReady: () => {
         this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
       },
@@ -28,6 +27,34 @@ export class AppComponent {
         this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
       }
     });
-  }
 
+    // Custom Select Operator
+    let selectOperator = new SelectOperator(newHwv);
+    let selectOperatorId = newHwv.registerCustomOperator(selectOperator);
+
+    // Custom Messure Operator
+    let measureOperator = new MeasureBetweenPointsOperator(newHwv);
+    let measureOperatorId = newHwv.registerCustomOperator(measureOperator);
+
+    var customOperatorSelect = document.getElementById("operatorType") as HTMLSelectElement;
+    if (customOperatorSelect == null) {
+      return;
+    }
+
+    customOperatorSelect.onchange = () => {
+      newHwv.operatorManager.clear();
+      newHwv.operatorManager.push(Communicator.OperatorId.Orbit);
+      if (customOperatorSelect.value === "Area Select") {
+        newHwv.operatorManager.push(Communicator.OperatorId.AreaSelect);
+      } else if (customOperatorSelect.value === "Select") {
+        newHwv.operatorManager.push(selectOperatorId);
+      } else if (customOperatorSelect.value === "Measure") {
+        newHwv.operatorManager.push(measureOperatorId);
+      }
+    }
+
+    window.onresize = () => {
+      newHwv.resizeCanvas();
+    };
+  }
 }
