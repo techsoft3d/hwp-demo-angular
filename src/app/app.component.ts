@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CameraStatus } from 'src/data/camera-status';
 import { SelectOperator } from 'src/typescript/select_operator';
 import { MeasureBetweenPointsOperator } from 'src/typescript/measure_operator';
 
@@ -9,7 +10,7 @@ import { MeasureBetweenPointsOperator } from 'src/typescript/measure_operator';
 })
 export class AppComponent {
   public modelStructureIsReady = false;
-  public cameraStatus = "unavailable";
+  public cameraStatus: CameraStatus | null = null;
 
   constructor() {
   }
@@ -18,13 +19,14 @@ export class AppComponent {
   newWebViewer(newHwv: Communicator.WebViewer) {
     newHwv.setCallbacks({
       sceneReady: () => {
-        this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
+        this.cameraStatus = newHwv.view.getCamera().toJson() as CameraStatus;
+        console.log(this.cameraStatus);
       },
       modelStructureReady: () => {
         this.modelStructureIsReady = true;
       },
       camera: () => {
-        this.cameraStatus = JSON.stringify(newHwv.view.getCamera().toJson(), null, 4);
+        this.cameraStatus = newHwv.view.getCamera().toJson() as CameraStatus;
       }
     });
 

@@ -7,9 +7,9 @@
     </div>
     <!-- Controlls -->
     <div class="col-6 p-0 m-0 overflow-scroll" style="height: 100vh">
+      <!-- Logo -->
       <nav class="navbar navbar-light bg-light m-0 p-3">
         <span class="navbar-brand m-0 p-0">
-          <!-- <h1 class="m-0 p-0">Welcome to Hoops Web Platform</h1> -->
           <img src="assets/ts3d_logo.png" class="img-fluid" alt="TechSoft 3D LOGO">
         </span>
       </nav>
@@ -26,7 +26,21 @@
         </select>
         <!-- Camera Status -->
         <h5>Camera Status</h5>
-        <p>{{ cameraStatus }}</p>
+        <p *ngIf="!cameraStatus">unavailable</p>
+        <div *ngIf="cameraStatus">
+          <p class="mb-0"><strong>Position:</strong>
+            ({{cameraStatus.position.x.toFixed(2)}}, {{cameraStatus.position.y.toFixed(2)}}, {{cameraStatus.position.z.toFixed(2)}})
+          </p>
+          <p class="mb-0"><strong>Target:</strong>
+            ({{cameraStatus.target.x.toFixed(2)}}, {{cameraStatus.target.y.toFixed(2)}}, {{cameraStatus.target.z.toFixed(2)}})
+          </p>
+          <p class="mb-0"><strong>Up:</strong>
+            ({{cameraStatus.up.x.toFixed(2)}}, {{cameraStatus.up.y.toFixed(2)}}, {{cameraStatus.up.z.toFixed(2)}})
+          </p>
+          <p class="mb-0"><strong>Width:</strong> {{cameraStatus.width.toFixed(2)}} &nbsp; <strong>Height:</strong> {{cameraStatus.height.toFixed(2)}}</p>
+          <p class="mb-0"><strong>Projection:</strong> {{cameraStatus.projection.toFixed(2)}} &nbsp; <strong>NearLimit:</strong> {{cameraStatus.nearLimit.toFixed(2)}}</p>
+          <p class="mb-0"><strong>Class Name:</strong> {{cameraStatus.className}}</p>
+        </div>
       </div>
     </div>
   </div>
