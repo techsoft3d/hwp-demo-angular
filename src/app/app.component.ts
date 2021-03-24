@@ -3,14 +3,24 @@ import { CameraStatus } from 'src/data/camera-status';
 import { SelectOperator } from 'src/typescript/select_operator';
 import { MeasureBetweenPointsOperator } from 'src/typescript/measure_operator';
 
+enum Tab {
+  home,
+  modelStructure
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  // Model Info
   public modelStructureIsReady = false;
   public cameraStatus: CameraStatus | null = null;
+  // Tab Control
+  public currentTab = Tab.home;
+  public Tab = Tab;
 
   constructor() {
   }
@@ -38,19 +48,15 @@ export class AppComponent {
     let measureOperator = new MeasureBetweenPointsOperator(newHwv);
     let measureOperatorId = newHwv.registerCustomOperator(measureOperator);
 
-    var customOperatorSelect = document.getElementById("operatorType") as HTMLSelectElement;
-    if (customOperatorSelect == null) {
-      return;
-    }
-
-    customOperatorSelect.onchange = () => {
+    this.changeOperator = (event: Event) => {
       newHwv.operatorManager.clear();
       newHwv.operatorManager.push(Communicator.OperatorId.Orbit);
-      if (customOperatorSelect.value === "Area Select") {
+      let newOperator = (event.target as HTMLSelectElement).value;
+      if (newOperator === "Area Select") {
         newHwv.operatorManager.push(Communicator.OperatorId.AreaSelect);
-      } else if (customOperatorSelect.value === "Select") {
+      } else if (newOperator === "Select") {
         newHwv.operatorManager.push(selectOperatorId);
-      } else if (customOperatorSelect.value === "Measure") {
+      } else if (newOperator === "Measure") {
         newHwv.operatorManager.push(measureOperatorId);
       }
     }
@@ -59,4 +65,12 @@ export class AppComponent {
       newHwv.resizeCanvas();
     };
   }
+
+  // Change tab
+  changeTab(newTab: Tab) {
+    this.currentTab = newTab;
+  }
+
+  // Change operator
+  changeOperator(event: Event) { }
 }
