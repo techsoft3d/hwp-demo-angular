@@ -21,7 +21,7 @@ export class AppComponent {
   public hwv: Communicator.WebViewer | null = null;
   public rootNodeId: Communicator.NodeId | null = null;
   // Tab Control
-  public currentTab = Tab.modelStructure;
+  public currentTab = Tab.home;
   public Tab = Tab;
 
   constructor() {
