@@ -33,6 +33,7 @@ export class ModelTreeItemComponent implements OnInit {
       case Communicator.NodeType.AssemblyNode: {
         this.nodeName = this.hwv.model.getNodeName(this.nodeId);
         this.children = this.hwv.model.getNodeChildren(this.nodeId);
+        this.modelTree?.addItem(this.nodeId, this);
         break;
       }
       default:
@@ -45,7 +46,7 @@ export class ModelTreeItemComponent implements OnInit {
   }
 
   selectModel() {
-    this.modelTree?.selectNode(this);
+    this.modelTree?.selectSingleNode(this.nodeId!);
   }
 
   // Styles

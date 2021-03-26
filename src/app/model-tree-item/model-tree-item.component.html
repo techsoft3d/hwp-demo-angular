@@ -1,6 +1,6 @@
-<div [ngStyle]="{'padding-left.px': level * 20 + 10}" [ngClass]="getSelectionClass()" class="border-bottom d-flex" style="margin-bottom: -1px;">
+<div [ngStyle]="{'padding-left.px': level * 20 + 10}" [ngClass]="getSelectionClass()" class="list-group-item list-group-item-action d-flex py-1" style="margin-bottom: -1px;">
     <div [ngClass]="getCaretClass()" (click)="toggleCollapse()" class="py-1"></div>
-    <div (click)="selectModel()" class="py-1 flex-fill cursor-pointer">{{ nodeName }}</div>
+    <div (click)="selectModel()" class="py-1 flex-fill cursor-pointer user-select-none">{{ nodeName }}</div>
 </div>
 <app-model-tree-item *ngFor="let child of children" [ngClass]="{'d-none': isCollapsed}" [modelTree]="modelTree" [hwv]="hwv" [nodeId]="child"
     [level]="level+1"></app-model-tree-item>
