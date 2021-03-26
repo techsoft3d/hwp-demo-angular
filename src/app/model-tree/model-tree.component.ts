@@ -12,7 +12,7 @@ export class ModelTreeComponent implements OnInit {
 
   public nodeName: String | null = null;
   public children: Communicator.NodeId[] | null = null;
-  public isCollapsed: boolean = true;
+  public isCollapsed: boolean = false;
 
   constructor() { }
 
@@ -39,6 +39,10 @@ export class ModelTreeComponent implements OnInit {
 
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  selectModel() {
+    console.log("selectModel");
   }
 
   // Styles
