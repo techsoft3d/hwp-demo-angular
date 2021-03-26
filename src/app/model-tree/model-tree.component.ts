@@ -12,6 +12,7 @@ export class ModelTreeComponent implements OnInit {
 
   public nodeName: String | null = null;
   public children: Communicator.NodeId[] | null = null;
+  public isCollapsed: boolean = true;
 
   constructor() { }
 
@@ -36,4 +37,15 @@ export class ModelTreeComponent implements OnInit {
     }
   }
 
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  // Styles
+  getCaretClass() {
+    return {
+      'caret': this.children != null && this.children.length > 0,
+      'caret-down': !this.isCollapsed,
+    }
+  }
 }
