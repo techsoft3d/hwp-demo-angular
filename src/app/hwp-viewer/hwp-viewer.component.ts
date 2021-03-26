@@ -32,7 +32,7 @@ export class HwpViewerComponent implements OnInit {
 
     hwv.setCallbacks({
       sceneReady: () => {
-        hwv.view.setBackgroundColor(Communicator.Color.blue(), Communicator.Color.white());
+        hwv.view.setBackgroundColor(Communicator.Color.white(), Communicator.Color.white());
       },
     });
 

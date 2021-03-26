@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HwpViewerComponent } from './hwp-viewer/hwp-viewer.component';
 import { ModelTreeComponent } from './model-tree/model-tree.component';
+import { ModelTreeItemComponent } from './model-tree-item/model-tree-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HwpViewerComponent,
-    ModelTreeComponent
+    ModelTreeComponent,
+    ModelTreeItemComponent
   ],
   imports: [
     BrowserModule,

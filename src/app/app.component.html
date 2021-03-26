@@ -1,7 +1,7 @@
 <div class="container-fluid p-0 m-0">
   <div class="row p-0 m-0" style="height: 100vh;">
     <!-- HWP WebViewer with Custom Component -->
-    <div class="col-6 p-0 m-0">
+    <div class="col-6 p-0 m-0 border-right border">
       <app-hwp-viewer modelPath="assets/microengine.scs" (webViewerEvent)="newWebViewer($event)">
       </app-hwp-viewer>
     </div>
@@ -57,7 +57,7 @@
         <div class="tab-pane fade show" [ngClass]="{'active': currentTab == Tab.modelStructure}">
           <h5>Model Structure</h5>
           <p *ngIf="!modelStructureIsReady">Model structure is not ready"</p>
-          <app-model-tree *ngIf="modelStructureIsReady" [hwv]="hwv" [nodeId]="rootNodeId" [level]="0"></app-model-tree>
+          <app-model-tree *ngIf="modelStructureIsReady" [hwv]="hwv"></app-model-tree>
         </div>
       </div>
     </div>

@@ -1,6 +1,3 @@
-<div [ngStyle]="{'padding-left.px': level * 20 + 10}" class="border rounded py-1" style="margin-bottom: -1px;">
-    <span [ngClass]="getCaretClass()" (click)="toggleCollapse()"></span>
-    <span (click)="selectModel()">{{ nodeName }}</span>
+<div class="rounded border p-0">
+    <app-model-tree-item *ngIf="rootNodeId != null" [modelTree]="this" [hwv]="hwv" [nodeId]="rootNodeId" [level]="0"></app-model-tree-item>
 </div>
-<app-model-tree *ngFor="let child of children" [ngClass]="{'d-none': isCollapsed}" [hwv]="hwv" [nodeId]="child"
-    [level]="level+1"></app-model-tree>
