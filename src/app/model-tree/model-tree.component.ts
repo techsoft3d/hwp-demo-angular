@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-model-tree',
@@ -6,10 +6,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./model-tree.component.scss']
 })
 export class ModelTreeComponent implements OnInit {
+  @Input() nodeId: Communicator.NodeId | null = null;
+  @Input() level: number = 0;
+  @Input() hwv: Communicator.WebViewer | null = null;
+
+  public nodeName: String | null = null;
+  public children: Communicator.NodeId[] | null = null;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.hwv == null) {
+      throw new Error("hwv missing");
+    }
+    if (this.nodeId == null) {
+      throw new Error("nodeId missing");
+    }
+    switch (this.hwv.model.getNodeType(this.nodeId)) {
+      case Communicator.NodeType.Part:
+      case Communicator.NodeType.PartInstance:
+      case Communicator.NodeType.BodyInstance:
+      case Communicator.NodeType.AssemblyNode: {
+        this.nodeName = this.hwv.model.getNodeName(this.nodeId);
+        this.children = this.hwv.model.getNodeChildren(this.nodeId);
+        break;
+      }
+      default:
+        break;
+    }
   }
 
 }

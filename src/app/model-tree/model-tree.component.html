@@ -1,1 +1,2 @@
-<p>model-tree works!</p>
+<p [ngStyle]="{'margin-left.px': level * 20}" class="mb-0">{{ nodeName }}</p>
+<app-model-tree *ngFor="let child of children" [hwv]="hwv" [nodeId]="child" [level]="level+1"></app-model-tree>

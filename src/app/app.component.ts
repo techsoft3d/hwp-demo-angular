@@ -18,8 +18,10 @@ export class AppComponent {
   // Model Info
   public modelStructureIsReady = false;
   public cameraStatus: CameraStatus | null = null;
+  public hwv: Communicator.WebViewer | null = null;
+  public rootNodeId: Communicator.NodeId | null = null;
   // Tab Control
-  public currentTab = Tab.home;
+  public currentTab = Tab.modelStructure;
   public Tab = Tab;
 
   constructor() {
@@ -27,6 +29,8 @@ export class AppComponent {
 
   // When the WebViewer is ready
   newWebViewer(newHwv: Communicator.WebViewer) {
+    this.hwv = newHwv;
+    console.log(newHwv.model);
     newHwv.setCallbacks({
       sceneReady: () => {
         this.cameraStatus = newHwv.view.getCamera().toJson() as CameraStatus;
@@ -34,6 +38,7 @@ export class AppComponent {
       },
       modelStructureReady: () => {
         this.modelStructureIsReady = true;
+        this.rootNodeId = newHwv.model.getAbsoluteRootNode();
       },
       camera: () => {
         this.cameraStatus = newHwv.view.getCamera().toJson() as CameraStatus;

@@ -56,8 +56,8 @@
         <!-- ModelStructure Tab -->
         <div class="tab-pane fade show" [ngClass]="{'active': currentTab == Tab.modelStructure}">
           <h5>Model Structure</h5>
-          <p>{{ modelStructureIsReady ? "Model structure is ready" : "Model structure is not ready" }}</p>
-          <h5>Tree</h5>
+          <p *ngIf="!modelStructureIsReady">Model structure is not ready"</p>
+          <app-model-tree *ngIf="modelStructureIsReady" [hwv]="hwv" [nodeId]="rootNodeId" [level]="0"></app-model-tree>
         </div>
       </div>
     </div>
