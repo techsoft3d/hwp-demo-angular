@@ -2,5 +2,4 @@
     <div [ngClass]="getCaretClass()" (click)="toggleCollapse()" class="py-1"></div>
     <div (click)="selectModel()" class="py-1 flex-fill cursor-pointer user-select-none">{{ nodeName }}</div>
 </div>
-<app-model-tree-item *ngFor="let child of children" [ngClass]="{'d-none': isCollapsed}" [modelTree]="modelTree" [hwv]="hwv" [nodeId]="child"
-    [level]="level+1"></app-model-tree-item>
+<app-model-tree-item *ngFor="let child of children" [ngClass]="{'d-none': isCollapsed}" [modelTree]="modelTree" [hwv]="hwv" [nodeId]="child" [level]="level+1"></app-model-tree-item>
