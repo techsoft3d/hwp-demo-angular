@@ -15,7 +15,7 @@ export class ModelTreeItemComponent implements OnInit {
   public nodeName: String | null = null;
   public children: Communicator.NodeId[] | null = null;
   public isCollapsed: boolean = false;
-  public isSelected: boolean = false;
+  protected isSelected: boolean = false;
 
   constructor() { }
 
@@ -41,12 +41,16 @@ export class ModelTreeItemComponent implements OnInit {
     }
   }
 
-  toggleCollapse() {
+  setSelect(newSelect: boolean) {
+    this.isSelected = newSelect;
+  }
+
+  collapseClick() {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  selectModel() {
-    this.modelTree?.selectSingleNode(this.nodeId!);
+  selectClick() {
+    this.hwv?.selectPart(this.isSelected ? null : this.nodeId)
   }
 
   // Styles
