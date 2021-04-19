@@ -45,14 +45,6 @@ export class AppComponent {
       }
     });
 
-    // Custom Select Operator
-    let selectOperator = new SelectOperator(newHwv);
-    let selectOperatorId = newHwv.registerCustomOperator(selectOperator);
-
-    // Custom Messure Operator
-    let measureOperator = new MeasureBetweenPointsOperator(newHwv);
-    let measureOperatorId = newHwv.registerCustomOperator(measureOperator);
-
     this.changeOperator = (event: Event) => {
       newHwv.operatorManager.clear();
       newHwv.operatorManager.push(Communicator.OperatorId.Orbit);
@@ -60,9 +52,9 @@ export class AppComponent {
       if (newOperator === "Area Select") {
         newHwv.operatorManager.push(Communicator.OperatorId.AreaSelect);
       } else if (newOperator === "Select") {
-        newHwv.operatorManager.push(selectOperatorId);
+        newHwv.operatorManager.push(Communicator.OperatorId.Select);
       } else if (newOperator === "Measure") {
-        newHwv.operatorManager.push(measureOperatorId);
+        newHwv.operatorManager.push(Communicator.OperatorId.MeasurePointPointDistance);
       }
     }
 

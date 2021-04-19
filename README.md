@@ -10,7 +10,13 @@ https://techsoft3d.github.io/hwp-demo-angular-microengine/
 
 ## Development server
 
-To get started, please make sure NodeJS, npm, and Angular CLI are installed.
+To get started, please make sure NodeJS, npm, and Angular CLI are installed. Run:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### `npm install`
+
+Install all the node_module dependencies.
+
+### `ng serve`
+
+Starting a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
