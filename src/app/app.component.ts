@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { CameraStatus } from 'src/data/camera-status';
-import { SelectOperator } from 'src/typescript/select_operator';
-import { MeasureBetweenPointsOperator } from 'src/typescript/measure_operator';
 
 enum Tab {
   home,
