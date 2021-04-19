@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModelTreeItemComponent } from '../model-tree-item/model-tree-item.component';
+declare let Communicator: any;
 
 @Component({
   selector: 'app-model-tree',
@@ -7,9 +8,9 @@ import { ModelTreeItemComponent } from '../model-tree-item/model-tree-item.compo
   styleUrls: ['./model-tree.component.scss']
 })
 export class ModelTreeComponent implements OnInit {
-  @Input() hwv: Communicator.WebViewer | null = null;
+  @Input() hwv: any = null;
 
-  public rootNodeId: Communicator.NodeId | null = null;
+  public rootNodeId: any = null;
   private itemList: {[nodeId: number]: ModelTreeItemComponent} = [];
 
   constructor() { }
@@ -21,7 +22,7 @@ export class ModelTreeComponent implements OnInit {
     this.rootNodeId = this.hwv.model.getAbsoluteRootNode();
     this.hwv.setCallbacks({
       // Selection event from the web viewer
-      selectionArray: (selectionEvents: Communicator.Event.NodeSelectionEvent[]) => {
+      selectionArray: (selectionEvents: any[]) => {
         for (var key in this.itemList) {
           this.itemList[key].setSelect(false);
         }
@@ -37,7 +38,7 @@ export class ModelTreeComponent implements OnInit {
   }
 
   // Managing child list
-  public addItem(nodeId: Communicator.NodeId, component: ModelTreeItemComponent) {
+  public addItem(nodeId: any, component: ModelTreeItemComponent) {
     this.itemList[nodeId] = component;
   }
 }

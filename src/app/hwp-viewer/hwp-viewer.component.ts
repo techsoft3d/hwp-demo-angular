@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
+declare let Communicator: any;
 
 @Component({
   selector: 'app-hwp-viewer',
@@ -9,8 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class HwpViewerComponent implements OnInit {
   @Input() modelPath: string;
-  @Input() operator: Communicator.OperatorId;
-  @Output() webViewerEvent = new EventEmitter<Communicator.WebViewer>();
+  @Input() operator: any;
+  @Output() webViewerEvent = new EventEmitter<any>();
 
   public viewerId = uuidv4();
 
