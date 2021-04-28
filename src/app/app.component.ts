@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CameraStatus } from 'src/data/camera-status';
-declare let Communicator: any;
 
 enum Tab {
   home,
@@ -17,8 +16,8 @@ export class AppComponent {
   // Model Info
   public modelStructureIsReady = false;
   public cameraStatus: CameraStatus | null = null;
-  public hwv: any = null;
-  public rootNodeId: any = null;
+  public hwv: Communicator.WebViewer | null = null;
+  public rootNodeId: Communicator.NodeId | null = null;
   // Tab Control
   public currentTab = Tab.home;
   public Tab = Tab;
@@ -27,7 +26,7 @@ export class AppComponent {
   }
 
   // When the WebViewer is ready
-  newWebViewer(newHwv: any) {
+  newWebViewer(newHwv: Communicator.WebViewer) {
     this.hwv = newHwv;
     console.log(newHwv.model);
     newHwv.setCallbacks({

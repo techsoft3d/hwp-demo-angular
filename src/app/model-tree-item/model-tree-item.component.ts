@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModelTreeComponent } from '../model-tree/model-tree.component';
-declare let Communicator: any;
 
 @Component({
   selector: 'app-model-tree-item',
@@ -8,13 +7,13 @@ declare let Communicator: any;
   styleUrls: ['./model-tree-item.component.scss']
 })
 export class ModelTreeItemComponent implements OnInit {
-  @Input() nodeId: any = null;
+  @Input() nodeId: Communicator.NodeId | null = null;
   @Input() level: number = 0;
-  @Input() hwv: any = null;
+  @Input() hwv: Communicator.WebViewer | null = null;
   @Input() modelTree: ModelTreeComponent | null = null;
 
   public nodeName: String | null = null;
-  public children: any[] = [];
+  public children: Communicator.NodeId[] | null = null;
   public isCollapsed: boolean = false;
   protected isSelected: boolean = false;
 
