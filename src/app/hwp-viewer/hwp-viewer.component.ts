@@ -22,9 +22,6 @@ export class HwpViewerComponent implements OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    console.log(this.viewerId);
-    console.log(this.modelPath);
-
     let hwv = new Communicator.WebViewer({
       containerId: this.viewerId,
       endpointUri: this.modelPath,

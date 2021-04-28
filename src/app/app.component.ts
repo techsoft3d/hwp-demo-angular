@@ -28,11 +28,9 @@ export class AppComponent {
   // When the WebViewer is ready
   newWebViewer(newHwv: Communicator.WebViewer) {
     this.hwv = newHwv;
-    console.log(newHwv.model);
     newHwv.setCallbacks({
       sceneReady: () => {
         this.cameraStatus = newHwv.view.getCamera().toJson() as CameraStatus;
-        console.log(this.cameraStatus);
       },
       modelStructureReady: () => {
         this.modelStructureIsReady = true;
