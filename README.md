@@ -1,12 +1,12 @@
-# HWP Demo Angular Micro Engine
+# HWP Demo Angular
 
-This is a demo for integrating [Hoops Communicator](https://www.techsoft3d.com/products/hoops/communicator/) with Angular framework.
+This is a demo for integrating [Hoops Web Platform](https://www.techsoft3d.com/products/hoops/web-platform/) (HWP) with Angular framework.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
 ## Live Demo
 
 A live demo is running with GitHub Pages at:
-https://techsoft3d.github.io/hwp-demo-angular-microengine/
+https://techsoft3d.github.io/hwp-demo-angular/
 
 ## Development server
 
